@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/style/style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+	<title>Tech Store</title>
+</head>
+<body>
+	<!-- Sliding Menu Button -->
+	<button class="menu-btn" id="menuBtn" title="Open menu"><i class="fas fa-bars"></i></button>
+	<!-- Sliding Side Menu -->
+	<nav class="side-menu" id="sideMenu">
+	<!-- Close link removed for toggle behavior -->
+		<a href="account.html"><i class="fas fa-user"></i> Account</a>
+		<a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+		<a href="cart.html"><i class="fas fa-shopping-cart"></i> Cart</a>
+		<a href="orders.html"><i class="fas fa-box"></i> Orders</a>
+		<a href="#about"> <i class="fas fa-info-circle"></i> About Us</a>
+	</nav>
+	<header>
+		   <div style="position:relative;display:flex;justify-content:center;align-items:center;gap:1.5rem;width:100%;">
+			   <h1 style="margin:0;">Tech Store</h1>
+			   <div style="position:relative;">
+				   <input id="searchBar" type="text" placeholder="Search products..." style="padding:0.5rem 1rem;border-radius:20px;border:1px solid #ccc;width:340px;font-size:1rem;outline:none;">
+				   <div id="searchResults" style="display:none;position:absolute;top:110%;left:0;width:100%;background:#fff;border:1px solid #ccc;border-radius:0 0 8px 8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);z-index:10;max-height:220px;overflow-y:auto;"></div>
+			   </div>
+			   <div id="iconGroup" style="position:absolute;right:0;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:0.7rem;">
+				   <span class="account-icon" id="accountIcon" title="Account">
+					   <i class="fas fa-user-circle"></i>
+				   </span>
+				   <span class="cart-icon" id="cartIcon" title="Go to Cart" style="position:relative;font-size:2rem;color:#fff;cursor:pointer;">
+					   <i class="fas fa-shopping-cart"></i>
+				   </span>
+			   </div>
+		   </div>
+	</header>
+	<div class="container">
+		<h2>Featured Products</h2>
+		<div class="products">
+			<div class="product">
+				<a href="/product/product.html" style="text-decoration:none;color:inherit;">
+					<img src="https://cdn-icons-png.flaticon.com/512/2921/2921822.png" alt="Laptop">
+					<div class="product-title">UltraBook Pro 15</div>
+					<div class="price">$1,299</div>
+				</a>
+				<a href="product.html"><button class="buy-btn">Buy Now</button></a>
+			</div>
+			<div class="product">
+				<img src="https://cdn-icons-png.flaticon.com/512/2921/2921820.png" alt="Smartphone">
+				<div class="product-title">Smartphone X2</div>
+				<div class="price">$799</div>
+				<button class="buy-btn" disabled>Buy Now</button>
+			</div>
+			<div class="product">
+				<img src="https://cdn-icons-png.flaticon.com/512/2921/2921817.png" alt="Headphones">
+				<div class="product-title">Noise Cancelling Headphones</div>
+				<div class="price">$199</div>
+				<button class="buy-btn" disabled>Buy Now</button>
+			</div>
+		</div>
+	</div>
+	<!-- ...existing code... -->
+	<footer style="background:#222;color:#fff;padding:2rem 0;text-align:center;margin-top:2rem;">
+		<div id="about" style="max-width:700px;margin:0 auto;">
+			<h2 style="margin-top:0;">About Tech Store</h2>
+			<p style="font-size:1.1rem;line-height:1.7;">At Tech Store, we are passionate about bringing you the latest and greatest in technology. From cutting-edge laptops to innovative gadgets, we curate a selection of products that cater to tech enthusiasts and professionals alike. Our mission is to provide a seamless shopping experience, exceptional customer service, and unbeatable prices. Whether you're looking for the perfect device for work or play, Tech Store has you covered.</p>
+		</div>
+	</footer>
+	<script>
+document.getElementById('accountIcon').onclick = function() {
+	window.location.href = 'account.html';
+};
+document.getElementById('cartIcon').onclick = function() {
+	window.location.href = '/cart/cart.html';
+};
+	const menuBtn = document.getElementById('menuBtn');
+	const sideMenu = document.getElementById('sideMenu');
+	menuBtn.onclick = function(e) {
+		e.stopPropagation();
+		if (sideMenu.classList.contains('open')) {
+			sideMenu.classList.remove('open');
+		} else {
+			sideMenu.classList.add('open');
+		}
+	};
+	document.body.addEventListener('click', function(e) {
+		if (sideMenu.classList.contains('open') && !sideMenu.contains(e.target) && e.target !== menuBtn) {
+			sideMenu.classList.remove('open');
+		}
+	});
+	document.getElementById('accountIcon').onclick = function() {
+		window.location.href = 'account.html';
+	};
+	document.getElementById('cartIcon').onclick = function() {
+		window.location.href = '/cart/cart.html';
+	};
+
+	// Search bar dropdown logic
+	const searchBar = document.getElementById('searchBar');
+	const searchResults = document.getElementById('searchResults');
+	if (searchBar && searchResults) {
+		searchBar.addEventListener('input', function() {
+			const query = searchBar.value.trim().toLowerCase();
+			if (!query) {
+				searchResults.style.display = 'none';
+				searchResults.innerHTML = '';
+				return;
+			}
+			const products = Array.from(document.querySelectorAll('.product'));
+			const matches = products.filter(card => {
+				const title = card.querySelector('.product-title')?.innerText.toLowerCase() || '';
+				return title.includes(query);
+			});
+			if (matches.length === 0) {
+				searchResults.innerHTML = '<div style="padding:0.7rem 1rem;color:#888;">No products found</div>';
+			} else {
+				searchResults.innerHTML = matches.map(card => {
+					const img = card.querySelector('img')?.src || '';
+					const title = card.querySelector('.product-title')?.innerText || '';
+					const price = card.querySelector('.price')?.innerText || '';
+					const link = card.querySelector('a')?.href || '';
+					return `<div style=\"display:flex;align-items:center;gap:0.7rem;padding:0.7rem 1rem;cursor:pointer;\" onclick=\"window.location.href='${link || '#'}'\"><img src=\"${img}\" alt=\"\" style=\"width:36px;height:36px;object-fit:contain;border-radius:6px;background:#f4f4f4;\"> <div><div style='font-weight:bold;'>${title}</div><div style='color:#2196f3;font-size:0.97rem;'>${price}</div></div></div>`;
+				}).join('');
+			}
+			searchResults.style.display = 'block';
+		});
+		// Hide dropdown on blur
+		searchBar.addEventListener('blur', function() {
+			setTimeout(() => { searchResults.style.display = 'none'; }, 150);
+		});
+		searchBar.addEventListener('focus', function() {
+			if (searchBar.value.trim()) searchResults.style.display = 'block';
+		});
+	}
+</script>
+</body>
+</html>

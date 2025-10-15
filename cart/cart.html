@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Tech Store</title>
+    <link rel="stylesheet" href="/style/cart_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <!-- Sliding Menu Button -->
+    <button class="menu-btn" id="menuBtn" title="Open menu"><i class="fas fa-bars"></i></button>
+    <!-- Sliding Side Menu -->
+    <nav class="side-menu" id="sideMenu">
+    <!-- Close link removed for toggle behavior -->
+        <a href="/index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="account.html"><i class="fas fa-user"></i> Account</a>
+        <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+        <a href="cart.html"><i class="fas fa-shopping-cart"></i> Cart</a>
+        <a href="orders.html"><i class="fas fa-box"></i> Orders</a>
+        <a href="#about"> <i class="fas fa-info-circle"></i> About Us</a>
+    </nav>
+    <header>
+        <div style="position:relative;display:flex;justify-content:center;align-items:center;gap:1.5rem;width:100%;">
+			   <h1 style="margin:0;">shopping cart</h1>
+			   <div id="iconGroup" style="position:absolute;right:0;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:0.7rem;">
+				   <span class="account-icon" id="accountIcon" title="Account">
+					   <i class="fas fa-user-circle"></i>
+				   </span>
+			   </div>
+		   </div>
+    </header>
+    <section>
+        <div class="container">
+        <h2>Your Selected Products</h2>
+        <div id="cartContent"></div>
+        <button class="checkout-btn" id="checkoutBtn" style="display:none;">Proceed to Payment</button>
+    </div>
+    </section>
+    <section>
+        <footer style="background:#222;color:#fff;padding:2rem 0;text-align:center;margin-top:2rem;">
+        <div id="about" style="max-width:700px;margin:0 auto;">
+            <h2 style="margin-top:0;">About Tech Store</h2>
+            <p style="font-size:1.1rem;line-height:1.7;">At Tech Store, we are passionate about bringing you the latest and greatest in technology. From cutting-edge laptops to innovative gadgets, we curate a selection of products that cater to tech enthusiasts and professionals alike. Our mission is to provide a seamless shopping experience, exceptional customer service, and unbeatable prices. Whether you're looking for the perfect device for work or play, Tech Store has you covered.</p>
+        </div>
+    </footer>
+    </section>
+    <script>
+    // Sliding menu logic
+    const menuBtn = document.getElementById('menuBtn');
+    const sideMenu = document.getElementById('sideMenu');
+    menuBtn.onclick = function(e) {
+        e.stopPropagation();
+        if (sideMenu.classList.contains('open')) {
+            sideMenu.classList.remove('open');
+        } else {
+            sideMenu.classList.add('open');
+        }
+    };
+    document.body.addEventListener('click', function(e) {
+        if (sideMenu.classList.contains('open') && !sideMenu.contains(e.target) && e.target !== menuBtn) {
+            sideMenu.classList.remove('open');
+        }
+    });
+    document.getElementById('accountIcon').onclick = function() {
+        window.location.href = 'account.html';
+    };
+
+    // Cart rendering logic
+    function renderCart() {
+        const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        const cartContent = document.getElementById('cartContent');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        if (cart.length === 0) {
+            cartContent.innerHTML = '<div class="empty">Your cart is empty.</div>';
+            checkoutBtn.style.display = 'none';
+            return;
+        }
+        let html = '<table><tr><th>Product</th><th>Price</th><th>Quantity</th><th>Subtotal</th><th></th></tr>';
+        let total = 0;
+        cart.forEach((item, idx) => {
+            const subtotal = item.price * item.quantity;
+            total += subtotal;
+            html += `<tr><td><img src="${item.img}" alt="${item.name}" style="width:40px;height:40px;vertical-align:middle;margin-right:8px;">${item.name}<br><span style='font-size:0.9em;color:#666;'>${item.desc}</span></td><td>$${item.price}</td><td>${item.quantity}</td><td>$${subtotal}</td><td><button class='remove-btn' onclick='removeFromCart(${idx})'><i class="fas fa-trash"></i></button></td></tr>`;
+        });
+        html += `<tr><th colspan='3' style='text-align:right;'>Total:</th><th>$${total}</th><th></th></tr></table>`;
+        cartContent.innerHTML = html;
+        checkoutBtn.style.display = 'inline-block';
+    }
+    window.removeFromCart = function(idx) {
+        let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        cart.splice(idx, 1);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCart();
+    }
+    document.getElementById('checkoutBtn').onclick = function() {
+        window.location.href = '/payment/payment.html';
+    };
+    renderCart();
+    </script>
+</body>
+</html>

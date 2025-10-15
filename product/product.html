@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - UltraBook Pro 15</title>
+    <link rel="stylesheet" href="/style/prod_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <!-- Sliding Menu Button -->
+    <button class="menu-btn" id="menuBtn" title="Open menu"><i class="fas fa-bars"></i></button>
+    <!-- Sliding Side Menu -->
+    <nav class="side-menu" id="sideMenu">
+    <!-- Close link removed for toggle behavior -->
+        <a href="/index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="account.html"><i class="fas fa-user"></i> Account</a>
+        <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+        <a href="cart.html"><i class="fas fa-shopping-cart"></i> Cart</a>
+        <a href="orders.html"><i class="fas fa-box"></i> Orders</a>
+        <a href="#about"> <i class="fas fa-info-circle"></i> About Us</a>
+    </nav>
+    <header>
+        <div style="position:relative;display:flex;justify-content:center;align-items:center;gap:1.5rem;width:100%;">
+            <h1 style="margin:0;">Tech Store</h1>
+            <div style="position:relative;">
+                <input id="searchBar" type="text" placeholder="Search products..." style="padding:0.5rem 1rem;border-radius:20px;border:1px solid #ccc;width:340px;font-size:1rem;outline:none;">
+                <div id="searchResults" style="display:none;position:absolute;top:110%;left:0;width:100%;background:#fff;border:1px solid #ccc;border-radius:0 0 8px 8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);z-index:10;max-height:220px;overflow-y:auto;"></div>
+            </div>
+            <div id="iconGroup" style="position:absolute;right:0;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:0.7rem;">
+				   <span class="account-icon" id="accountIcon" title="Account">
+					   <i class="fas fa-user-circle"></i>
+				   </span>
+				   <span class="cart-icon" id="cartIcon" title="Go to Cart" style="position:relative;font-size:2rem;color:#fff;cursor:pointer;">
+					   <i class="fas fa-shopping-cart"></i>
+				   </span>
+			   </div>
+        </div>
+    </header>
+    <div class="container">
+        <button onclick="window.location.href='/index.html'" title="Back to Store" style="background:none;border:none;cursor:pointer;margin-bottom:1rem;font-size:1.3rem;color:#2196f3;display:flex;align-items:center;gap:0.3rem;">
+            <i class="fas fa-arrow-left"></i> <span style="font-size:1rem;">Store</span>
+        </button>
+        <div class="product-detail">
+            <img src="https://cdn-icons-png.flaticon.com/512/2921/2921822.png" alt="UltraBook Pro 15">
+            <div class="info">
+                <div class="title" id="productTitle">UltraBook Pro 15</div>
+                <div class="price" id="productPrice">$1,299</div>
+                <div class="desc" id="productDesc">
+                    The UltraBook Pro 15 is a high-performance laptop designed for professionals and tech enthusiasts. Features a 15.6" Retina display, 16GB RAM, 1TB SSD, and the latest Intel processor.
+                </div>
+                <div style="display:flex;align-items:center;gap:0.7rem;margin-bottom:1rem;">
+                    <label for="quantity" style="font-weight:bold;">Quantity:</label>
+                    <input type="number" id="quantity" min="1" value="1" style="width:60px;">
+                    <button class="add-cart-icon" id="mainAddCartIcon" title="Add to Cart"><i class="fas fa-cart-plus"></i></button>
+                </div>
+            </div>
+        </div>
+     <section>
+           <div style="display:flex;align-items:center;justify-content:space-between;margin-top:2.5rem;margin-bottom:0.5rem;gap:1.5rem;">
+            <h3 style="margin:0;">Other Products</h3>
+        </div>
+        <div class="products">
+            <div class="product-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/2921/2921820.png" alt="Smartphone X2">
+                <div style="font-weight:bold;">Smartphone X2</div>
+                <div class="desc">A powerful smartphone with a stunning display, fast processor, and long battery life.</div>
+                <div style="color:#2196f3;font-weight:bold;">$799</div>
+                <button class="add-cart-icon" data-name="Smartphone X2" data-price="799" data-img="https://cdn-icons-png.flaticon.com/512/2921/2921820.png" title="Add to Cart"><i class="fas fa-cart-plus"></i></button>
+            </div>
+            <div class="product-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/2921/2921817.png" alt="Noise Cancelling Headphones">
+                <div style="font-weight:bold;">Noise Cancelling Headphones</div>
+                <div class="desc">Experience immersive sound and block out distractions with advanced noise cancellation.</div>
+                <div style="color:#2196f3;font-weight:bold;">$199</div>
+                <button class="add-cart-icon" data-name="Noise Cancelling Headphones" data-price="199" data-img="https://cdn-icons-png.flaticon.com/512/2921/2921817.png" title="Add to Cart"><i class="fas fa-cart-plus"></i></button>
+            </div>
+            <div class="product-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/2921/2921821.png" alt="Tablet Pro">
+                <div style="font-weight:bold;">Tablet Pro</div>
+                <div class="desc">A lightweight tablet with a vibrant display, perfect for work and entertainment on the go.</div>
+                <div style="color:#2196f3;font-weight:bold;">$499</div>
+                <button class="add-cart-icon" data-name="Tablet Pro" data-price="499" data-img="https://cdn-icons-png.flaticon.com/512/2921/2921821.png" title="Add to Cart"><i class="fas fa-cart-plus"></i></button>
+            </div>
+            <div class="product-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/2921/2921819.png" alt="Smartwatch Z">
+                <div style="font-weight:bold;">Smartwatch Z</div>
+                <div class="desc">Stay connected and track your fitness with this stylish and feature-rich smartwatch.</div>
+                <div style="color:#2196f3;font-weight:bold;">$299</div>
+                <button class="add-cart-icon" data-name="Smartwatch Z" data-price="299" data-img="https://cdn-icons-png.flaticon.com/512/2921/2921819.png" title="Add to Cart"><i class="fas fa-cart-plus"></i></button>
+            </div>
+            <div class="product-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/2921/2921818.png" alt="Bluetooth Speaker">
+                <div style="font-weight:bold;">Bluetooth Speaker</div>
+                <div class="desc">Portable speaker with deep bass and crystal-clear sound for your music anywhere.</div>
+                <div style="color:#2196f3;font-weight:bold;">$99</div>
+                <button class="add-cart-icon" data-name="Bluetooth Speaker" data-price="99" data-img="https://cdn-icons-png.flaticon.com/512/2921/2921818.png" title="Add to Cart"><i class="fas fa-cart-plus"></i></button>
+            </div>
+            <div class="product-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/2921/2921823.png" alt="Wireless Mouse">
+                <div style="font-weight:bold;">Wireless Mouse</div>
+                <div class="desc">Ergonomic wireless mouse with precision tracking and long battery life.</div>
+                <div style="color:#2196f3;font-weight:bold;">$49</div>
+                <button class="add-cart-icon" data-name="Wireless Mouse" data-price="49" data-img="https://cdn-icons-png.flaticon.com/512/2921/2921823.png" title="Add to Cart"><i class="fas fa-cart-plus"></i></button>
+            </div>
+        </div>
+    <div class="toast" id="toast">Added to cart!</div>
+     </section>
+    </div>
+       <footer style="background:#222;color:#fff;padding:2rem 0;text-align:center;margin-top:2rem;">
+        <div id="about" style="max-width:700px;margin:0 auto;">
+            <h2 style="margin-top:0;">About Tech Store</h2>
+            <p style="font-size:1.1rem;line-height:1.7;">At Tech Store, we are passionate about bringing you the latest and greatest in technology. From cutting-edge laptops to innovative gadgets, we curate a selection of products that cater to tech enthusiasts and professionals alike. Our mission is to provide a seamless shopping experience, exceptional customer service, and unbeatable prices. Whether you're looking for the perfect device for work or play, Tech Store has you covered.</p>
+        </div>
+    </footer>
+    <script>
+    // Add to Cart logic for main product icon
+    document.getElementById('mainAddCartIcon').onclick = function() {
+        const name = document.getElementById('productTitle').innerText;
+        const price = 1299;
+        const quantity = parseInt(document.getElementById('quantity').value) || 1;
+        const desc = document.getElementById('productDesc').innerText;
+        const img = document.querySelector('.product-detail img').src;
+        let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        let found = false;
+        for (let item of cart) {
+            if (item.name === name) {
+                item.quantity += quantity;
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            cart.push({ name, price, quantity, desc, img });
+        }
+        localStorage.setItem('cart', JSON.stringify(cart));
+        showToast('Added to cart!');
+    };
+    const menuBtn = document.getElementById('menuBtn');
+    const sideMenu = document.getElementById('sideMenu');
+    menuBtn.onclick = function(e) {
+        e.stopPropagation();
+        if (sideMenu.classList.contains('open')) {
+            sideMenu.classList.remove('open');
+        } else {
+            sideMenu.classList.add('open');
+        }
+    };
+    document.body.addEventListener('click', function(e) {
+        if (sideMenu.classList.contains('open') && !sideMenu.contains(e.target) && e.target !== menuBtn) {
+            sideMenu.classList.remove('open');
+        }
+    });
+    document.getElementById('accountIcon').onclick = function() {
+        window.location.href = 'account.html';
+    };
+    document.getElementById('cartIcon').onclick = function() {
+        window.location.href = '/cart/cart.html';
+    };
+
+    // Toast notification
+    function showToast(msg) {
+        const toast = document.getElementById('toast');
+        toast.textContent = msg;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 1200);
+    }
+
+    // Add to Cart logic for other product cards
+    document.querySelectorAll('.add-cart-icon').forEach(function(btn) {
+        btn.onclick = function() {
+            const name = btn.getAttribute('data-name');
+            const price = parseInt(btn.getAttribute('data-price'));
+            const img = btn.getAttribute('data-img');
+            const desc = btn.parentElement.querySelector('.desc')?.textContent || '';
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            let found = false;
+            for (let item of cart) {
+                if (item.name === name) {
+                    item.quantity += 1;
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                cart.push({ name, price, quantity: 1, desc, img });
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            showToast('Added to cart!');
+        };
+    });
+
+    // Search bar dropdown logic
+    const searchBar = document.getElementById('searchBar');
+    const searchResults = document.getElementById('searchResults');
+    if (searchBar && searchResults) {
+        searchBar.addEventListener('input', function() {
+            const query = searchBar.value.trim().toLowerCase();
+            if (!query) {
+                searchResults.style.display = 'none';
+                searchResults.innerHTML = '';
+                return;
+            }
+            const products = Array.from(document.querySelectorAll('.product-card'));
+            const matches = products.filter(card => {
+                const title = card.querySelector('div[style*="font-weight:bold;"]')?.innerText.toLowerCase() || '';
+                return title.includes(query);
+            });
+            if (matches.length === 0) {
+                searchResults.innerHTML = '<div style="padding:0.7rem 1rem;color:#888;">No products found</div>';
+            } else {
+                searchResults.innerHTML = matches.map(card => {
+                    const img = card.querySelector('img')?.src || '';
+                    const title = card.querySelector('div[style*="font-weight:bold;"]')?.innerText || '';
+                    const price = card.querySelector('div[style*="color:#2196f3;font-weight:bold;"]')?.innerText || '';
+                    return `<div style=\"display:flex;align-items:center;gap:0.7rem;padding:0.7rem 1rem;cursor:pointer;\" onclick=\"window.location.href='product.html'\"><img src=\"${img}\" alt=\"\" style=\"width:36px;height:36px;object-fit:contain;border-radius:6px;background:#f4f4f4;\"> <div><div style='font-weight:bold;'>${title}</div><div style='color:#2196f3;font-size:0.97rem;'>${price}</div></div></div>`;
+                }).join('');
+            }
+            searchResults.style.display = 'block';
+        });
+        // Hide dropdown on blur
+        searchBar.addEventListener('blur', function() {
+            setTimeout(() => { searchResults.style.display = 'none'; }, 150);
+        });
+        searchBar.addEventListener('focus', function() {
+            if (searchBar.value.trim()) searchResults.style.display = 'block';
+        });
+    }
+    </script>
+</body>
+</html>
