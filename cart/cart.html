@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart - Tech Store</title>
-    <link rel="stylesheet" href="/style/cart_style.css">
+    <link rel="stylesheet" href="./style/cart_style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
@@ -13,7 +13,7 @@
     <!-- Sliding Side Menu -->
     <nav class="side-menu" id="sideMenu">
     <!-- Close link removed for toggle behavior -->
-        <a href="/index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="./index.html"><i class="fas fa-home"></i> Home</a>
         <a href="account.html"><i class="fas fa-user"></i> Account</a>
         <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
         <a href="cart.html"><i class="fas fa-shopping-cart"></i> Cart</a>
@@ -94,7 +94,7 @@
         renderCart();
     }
     document.getElementById('checkoutBtn').onclick = function() {
-        window.location.href = '/payment/payment.html';
+        window.location.href = './payment/payment.html';
     };
     renderCart();
     </script>
