@@ -2,7 +2,7 @@ document.getElementById('accountIcon').onclick = function() {
 	window.location.href = 'account.html';
 };
 document.getElementById('cartIcon').onclick = function() {
-	window.location.href = '/cart/cart.html';
+	window.location.href = './cart/cart.html';
 };
 	const menuBtn = document.getElementById('menuBtn');
 	const sideMenu = document.getElementById('sideMenu');
@@ -23,7 +23,7 @@ document.getElementById('cartIcon').onclick = function() {
 		window.location.href = 'account.html';
 	};
 	document.getElementById('cartIcon').onclick = function() {
-		window.location.href = '/cart/cart.html';
+		window.location.href = './cart/cart.html';
 	};
 
 	// Search bar dropdown logic
